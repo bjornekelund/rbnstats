@@ -1,8 +1,9 @@
 #!/bin/bash
-# Creates analysis results for the past ten days
-# provide historical data for script webserver/updatehistdata
-# Used when installing fresh
+# Does incremental analysis of RBN skimmer activity
 #set -x
+
+# Move to correct folder to allow cron execution on RPi
+[ -d "/home/sm7iun/rbnstats" ] && cd /home/sm7iun/rbnstats
 
 FOLDER="rbndata"
 NEWFILE="$FOLDER/`date -u --date="1 days ago" +%Y%m%d`.txt"
