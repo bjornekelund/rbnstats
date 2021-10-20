@@ -29,5 +29,6 @@ else
   exit
 fi
 ./updatestats.bash
+./updatestatsp.bash
 ./upload.bash
 exit
