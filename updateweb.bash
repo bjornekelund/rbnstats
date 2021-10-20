@@ -28,5 +28,6 @@ else
   echo "Failed to download RBN data"
   exit
 fi
-./updatehistory.bash
+./updatestats.bash
+./upload.bash
 exit
