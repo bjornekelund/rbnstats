@@ -55,6 +55,7 @@ awk '
 {
   array[$1][$2] = $3;
   call = $1;
+  daytotal[$2] += $3;
 }
 END {
 # Find a call that has been active all ten days
@@ -71,13 +72,20 @@ END {
   j = 0
   for (datestring in array[call]) {
     date[j++] = datestring;
+#    printf("daytotal[%s]=%d\n", datestring, daytotal[datestring]) > "/dev/stderr";
   }
   for (i in array) {
 	printf("%-9s", i);
     if (isarray(array[i])) {
 # Print data in row in antichronological order
       for (j = 9; j >= 0; j--) {
-        printf("%6s", array[i][date[j]]);
+        element = array[i][date[j]];
+        if (element != "") {
+          share = 1000.0 * element / daytotal[date[j]];
+          printf((share >= 10.0) ? "%5.1f%s" : "%5.2f%s", share, "&#x2030");
+        }
+        else
+          printf("%6s", element);
       }
 	  printf("\n");
     }
