@@ -82,7 +82,9 @@ END {
         element = array[i][date[j]];
         if (element != "") {
           share = 1000.0 * element / daytotal[date[j]];
-          printf((share >= 10.0) ? "%5.1f%s" : "%5.2f%s", share, "&#x2030");
+#          printf((share >= 10.0) ? "%5.1f%s" : "%5.2f%s", share, "&#x2030");
+#          printf((share >= 10.0) ? "%5.1f%s" : "%5.2f%s", share, "&#x2030");
+          printf("%6.2f", share);
         }
         else
           printf("%6s", element);
