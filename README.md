@@ -1,2 +1,2 @@
 # rbnstat
-Spot statistics over a few days and weeks for RBN skimmers
+Spot statistics over the past ten days for RBN skimmers.
