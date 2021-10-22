@@ -6,7 +6,7 @@
 #set -x
 
 FOLDER="rbndata"
-OUTFILE=rbnstats.txt
+OUTFILE=$FOLDER/rbnstats.txt
 FILES="$FOLDER/`date -u --date="1 days ago" +%Y%m%d`.txt $FOLDER/`date -u --date="2 days ago" +%Y%m%d`.txt \
  $FOLDER/`date -u --date="3 days ago" +%Y%m%d`.txt $FOLDER/`date -u --date="4 days ago" +%Y%m%d`.txt \
  $FOLDER/`date -u --date="5 days ago" +%Y%m%d`.txt $FOLDER/`date -u --date="6 days ago" +%Y%m%d`.txt \

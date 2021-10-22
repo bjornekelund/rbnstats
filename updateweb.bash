@@ -31,5 +31,6 @@ else
 fi
 ./updatestats.bash
 ./updatestatsp.bash
+./updateactdata.bash
 ./upload.bash
 exit
