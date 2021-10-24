@@ -86,5 +86,5 @@ END {
 echo >> $OUTFILE
 echo "Last updated "`date -u "+%F %T"`" UTC" >> $OUTFILE
 
-echo "Analysis done, result stored in" $OUTFILE
+echo "Spot count analysis result saved in" $OUTFILE
 exit

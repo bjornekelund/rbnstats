@@ -7,14 +7,14 @@
 
 FOLDER="rbndata"
 DATE=`date -u --date="1 days ago" +%Y-%m-%d`
-DFILE=".rbndata.csv"
-OFILE="rbnact.txt"
+DFILE="$FOLDER/.rbndata.csv"
+OFILE="$FOLDER/rbnact.txt"
 
-echo "Updating activity data for:" $DATE
+./cunique -f $DFILE > $OFILE
 
-./cunique -f $FOLDER/$DFILE > $FOLDER/$OFILE
+echo >> $OFILE
+echo "Last updated "`date -u "+%F %T"`" UTC" >> $OFILE
 
-echo >> $FOLDER/$OFILE
-echo "Last updated "`date -u "+%F %T"`" UTC" >> $FOLDER/$OFILE
+echo "RBN activity statistics saved in" $OFILE
 
 exit
