@@ -8,7 +8,7 @@ cunique:	cunique.c Makefile
 		$(gcc) -o cunique cunique.c -lm
 
 clean:
-		rm -f *.o *~
+		rm -f *.o *~ cunique
 
 lint:
 		${lint} cunique.c

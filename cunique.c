@@ -65,14 +65,14 @@ int main(int argc, char *argv[])
 
     for (int bi = 0; bi < MAXBANDS; bi++)
     {
-        contarray[bi].skimcount = 0;
-        contarray[bi].callcount = 0;
+        bandarray[bi].skimcount = 0;
+        bandarray[bi].callcount = 0;
         for (int ci = 0; ci < MAXCONT; ci++)
         {
             contbandarray[ci][bi].skimcount = 0;
             contbandarray[ci][bi].callcount = 0;
-            bandarray[bi].skimcount = 0;
-            bandarray[bi].callcount = 0;
+	    contarray[ci].skimcount = 0;
+            contarray[ci].callcount = 0;
         }
     }
 
