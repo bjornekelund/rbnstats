@@ -40,7 +40,7 @@ END {
   printf("Skimmer  ");
   j = 0
   for (datestring in array[call]) {
-    date[j++] = strftime("%m%d", datestring*86400);
+    date[j++] = strftime("%m%d", (datestring - 1) * 86400);
   }
 # Print in antichronological order
   for (j = 9; j >= 0; j--) {
