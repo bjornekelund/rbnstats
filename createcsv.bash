@@ -4,7 +4,8 @@ FOLDER=rbndata
 OUTFILE=statistics.csv
 
 sort $1 | awk 'BEGIN {
-  printf("callsign,epochdate,spotcount\n");
+  printf("# Created %s\n", strftime("%Y-%m-%d %H:%M:%S UTC"));
+  printf("Callsign,Epoch date,Spot count\n");
   FS=" ";
 }
 {
