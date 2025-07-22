@@ -35,6 +35,7 @@ else
   exit
 fi
 
+./createcsv.bash $NEWFILE
 ./updatestats.bash
 ./updatestatsp.bash
 ./updateactdata.bash
