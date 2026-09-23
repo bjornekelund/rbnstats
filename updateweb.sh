@@ -9,6 +9,7 @@ FOLDER="rbndata"
 NEWFILE="$FOLDER/`date -u --date="1 days ago" +%Y%m%d`.txt"
 NEWDATE="`date -u --date="1 days ago" +%Y%m%d`"
 OLDFILE="$FOLDER/`date -u --date="11 days ago" +%Y%m%d`.txt"
+CREDFILE="WEBCREDENTIALS"
 
 echo "---"
 echo "Job started "`date -u "+%F %T"`UTC
@@ -40,7 +41,7 @@ fi
 ./updateactdata.sh
 
 #printf "Uploading to web hosting..."
-./ftptohost.sh $FOLDER/rbnstats.txt $FOLDER/rbnstatsp.txt $FOLDER/rbnact.txt
+./ftptohost.sh $CREDFILE $FOLDER/rbnstats.txt $FOLDER/rbnstatsp.txt $FOLDER/rbnact.txt
 #printf "done\n"
 
 echo "Job ended "`date -u "+%F %T"`" UTC and took $((SECONDS-START)) seconds"

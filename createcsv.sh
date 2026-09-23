@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Creates a machine readable version of the previous day's spot statistics
 FOLDER=rbndata
 OUTFILE=statistics.csv
