@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Creates analysis results for the past ten days
 # provide historical data for script webserver/updatehistdata
 # Used when installing fresh
@@ -24,7 +24,7 @@ for date in $DATES; do
         echo "Downloaded "$((`wc -l < $FOLDER/.rbndata.csv` - 2))" spots."
         EPOCHDATE=$(($(date --utc --date="$date" +%s)/86400))
         # Process
-        cat $FOLDER/.rbndata.csv | ./parse.bash $EPOCHDATE > $FOLDER/$date.txt
+        cat $FOLDER/.rbndata.csv | ./parse.sh $EPOCHDATE > $FOLDER/$date.txt
         echo "Analysis done, result #"$EPOCHDATE" saved in" $FOLDER/$date.txt
     else
         echo "Failed to download RBN data"

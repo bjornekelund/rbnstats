@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Calculate a new set of reference skimmers for the next night's run
 # Built to be called from script updateweb or initweb
 

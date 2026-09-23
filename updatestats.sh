@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Uses saved analysis results from the last ten days
 # to assemble a table sorted by skimmer callsign
 # updatewebdata creates the required result files.

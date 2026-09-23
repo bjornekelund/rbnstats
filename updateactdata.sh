@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Analyses the content of webserver/rbndata.csv and
 # creates summaries of station and skimmer activity
 # per continent and band.

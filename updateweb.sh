@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Does incremental analysis of RBN skimmer activity
 #set -x
 
@@ -28,21 +28,20 @@ if [[ $FILESIZE != "0" ]]; then
   echo "Downloaded "$((`wc -l < $FOLDER/.rbndata.csv` - 2))" spots"
   EPOCHDATE=$(($(date --utc --date="$date" +%s)/86400))
   # Process
-  cat $FOLDER/.rbndata.csv | ./parse.bash $EPOCHDATE > $NEWFILE
+  cat $FOLDER/.rbndata.csv | ./parse.sh $EPOCHDATE > $NEWFILE
   echo "Raw skimmer statistics from epoch day #"$EPOCHDATE" saved in" $NEWFILE
 else
   echo "Failed to download RBN data"
   exit
 fi
 
-./createcsv.bash $NEWFILE
-./updatestats.bash
-./updatestatsp.bash
-./updateactdata.bash
+./updatestats.sh
+./updatestatsp.sh
+./updateactdata.sh
 
-printf "Uploading to web hosting..."
-./upload.bash
-printf "done\n"
+#printf "Uploading to web hosting..."
+./ftptohost.sh $FOLDER/rbnstats.txt $FOLDER/rbnstatsp.txt $FOLDER/rbnact.txt
+#printf "done\n"
 
 echo "Job ended "`date -u "+%F %T"`" UTC and took $((SECONDS-START)) seconds"
 
