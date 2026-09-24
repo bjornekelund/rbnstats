@@ -24,7 +24,7 @@ OLDESTRBN="$RBNFOLDER/`date -u --date="10 days ago" +%Y%m%d`.txt"
 
 rm -rf $OLDFILE
 
-echo "Downloading RBN data for" $NEWDATE
+printf "Downloading RBN data for $NEWDATE..."
 
 wget --quiet --no-hsts http://www.reversebeacon.net/raw_data/dl.php?f=$NEWDATE -O $RBNFOLDER/rbndata.zip
 
@@ -32,23 +32,21 @@ FILESIZE=$(stat -c%s $RBNFOLDER/rbndata.zip)
 
 if [[ $FILESIZE != "0" ]]; then
   gunzip < $RBNFOLDER/rbndata.zip > $RBNFOLDER/rbndata.csv
-  echo "Downloaded "$((`wc -l < $RBNFOLDER/rbndata.csv` - 2))" spots"
+  echo "done ("$((`wc -l < $RBNFOLDER/rbndata.csv` - 2))" spots)"
   EPOCHDATE=$(($(date --utc --date="$date" +%s)/86400))
-  # Process
   ./parse.sh $EPOCHDATE < $RBNFOLDER/rbndata.csv > $NEWFILE
-  echo "Raw skimmer statistics from epoch day #"$EPOCHDATE" saved in" $NEWFILE
+  echo "Skimmer statistics saved in $NEWFILE"
 else
-  echo "Failed to download RBN data"
-  exit
+  printf "\nERROR: Failed to download RBN data!\n"
+  exit 1
 fi
 
 ./createstats.sh
 ./createstatsp.sh
 ./createactdata.sh
+./createcsv.sh $NEWFILE
 
-#printf "Uploading to web hosting..."
-./ftptohost.sh $CREDFILE $WEBFOLDER/rbnstats.txt $WEBFOLDER/rbnstatsp.txt $WEBFOLDER/rbnact.txt
-#printf "done\n"
+./ftptohost.sh $CREDFILE $WEBFOLDER/rbnstats.txt $WEBFOLDER/rbnstatsp.txt $WEBFOLDER/rbnact.txt $WEBFOLDER/statistics.csv
 
 echo "Job ended "`date -u "+%F %T"`" UTC and took $((SECONDS-START)) seconds"
 

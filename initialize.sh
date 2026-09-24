@@ -18,14 +18,14 @@ echo "Creating historical analysis results for:" $DATES
 
 for date in $DATES; do
     echo "Downloading RBN data for:" $date
-    wget --quiet --no-hsts http://www.reversebeacon.net/raw_data/dl.php?f=$date -O $RBNFOLDER/.rbndata.zip
-    FILESIZE=$(stat -c%s $RBNFOLDER/.rbndata.zip)
+    wget --quiet --no-hsts http://www.reversebeacon.net/raw_data/dl.php?f=$date -O $RBNFOLDER/rbndata.zip
+    FILESIZE=$(stat -c%s $RBNFOLDER/rbndata.zip)
     if [[ $FILESIZE != "0" ]]; then
-        gunzip < $RBNFOLDER/.rbndata.zip > $RBNFOLDER/.rbndata.csv
-        echo "Downloaded "$((`wc -l < $RBNFOLDER/.rbndata.csv` - 2))" spots."
+        gunzip < $RBNFOLDER/rbndata.zip > $RBNFOLDER/rbndata.csv
+        echo "Downloaded "$((`wc -l < $RBNFOLDER/rbndata.csv` - 2))" spots."
         EPOCHDATE=$(($(date --utc --date="$date" +%s)/86400))
         # Process
-        cat $RBNFOLDER/.rbndata.csv | ./parse.sh $EPOCHDATE > $RBNFOLDER/$date.txt
+        cat $RBNFOLDER/rbndata.csv | ./parse.sh $EPOCHDATE > $RBNFOLDER/$date.txt
         echo "Analysis done, result #"$EPOCHDATE" saved in" $RBNFOLDER/$date.txt
     else
         echo "Failed to download RBN data"
