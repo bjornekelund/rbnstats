@@ -9,6 +9,7 @@ cunique: cunique.c Makefile
 
 clean:
 	rm -f *.o *~ cunique
+	rm -f rbndata/* webfiles/*
 
 lint:
 	${lint} cunique.c
