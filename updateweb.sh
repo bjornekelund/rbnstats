@@ -22,9 +22,6 @@ OLDESTRBN="$RBNFOLDER/`date -u --date="10 days ago" +%Y%m%d`.txt"
 
 [ -f cunique ] || make
 
-[ -f $RBNFOLDER ] || mkdir $RBNFOLDER
-[ -f $WEBFOLDER ] || mkdir $WEBFOLDER
-
 rm -rf $OLDFILE
 
 printf "Downloading RBN data for $NEWDATE..."

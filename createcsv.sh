@@ -3,6 +3,8 @@
 WEBFOLDER="webfiles"
 OUTFILE=$WEBFOLDER/statistics.csv
 
+test -e "$WEBFOLDER" || mkdir $WEBFOLDER
+
 sort $1 | awk 'BEGIN {
   printf("# Created %s\n", strftime("%Y-%m-%d %H:%M:%S UTC"));
   printf("Callsign,Epoch date,Spot count\n");

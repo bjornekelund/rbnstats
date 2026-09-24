@@ -10,6 +10,8 @@ WEBFOLDER="webfiles"
 OUTFILE=$WEBFOLDER/rbnstatsp.txt
 HISTFILE=$RBNFOLDER/history.txt
 
+test -e "$WEBFOLDER" || mkdir $WEBFOLDER
+
 INFILES="$RBNFOLDER/`date -u --date="1 days ago" +%Y%m%d`.txt $RBNFOLDER/`date -u --date="2 days ago" +%Y%m%d`.txt \
  $RBNFOLDER/`date -u --date="3 days ago" +%Y%m%d`.txt $RBNFOLDER/`date -u --date="4 days ago" +%Y%m%d`.txt \
  $RBNFOLDER/`date -u --date="5 days ago" +%Y%m%d`.txt $RBNFOLDER/`date -u --date="6 days ago" +%Y%m%d`.txt \
