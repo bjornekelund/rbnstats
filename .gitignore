@@ -1,7 +1,5 @@
 .*
-rbnstats.txt
-rbnstatsp.txt
-rbndata/*
+rbndata/
 cunique
-
 WEBCREDENTIALS
+webfiles/
