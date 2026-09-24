@@ -17,6 +17,14 @@ echo "Job started "`date -u "+%F %T"`UTC
 
 START=$SECONDS
 
+# Check if we already did the work for today, if so, exit
+test -e "$WEBFOLDER" || mkdir $WEBFOLDER
+[ -f $WEBFOLDER/done ] || echo "Never" > $WEBFOLDER/done
+if [ "$DATE" == "`cat $WEBFOLDER/done`" ]; then
+    echo "Nothing to do."
+    exit
+fi
+
 OLDESTRBN="$RBNFOLDER/`date -u --date="10 days ago" +%Y%m%d`.txt"
 [ -f $OLDESTRBN ] || ./initialize.sh
 
@@ -47,6 +55,8 @@ fi
 ./createcsv.sh $NEWFILE
 
 ./ftptohost.sh $CREDFILE $WEBFOLDER/rbnstats.txt $WEBFOLDER/rbnstatsp.txt $WEBFOLDER/rbnact.txt $WEBFOLDER/statistics.csv
+
+echo $DATE > $WEBFOLDER/done
 
 echo "Job ended "`date -u "+%F %T"`" UTC and took $((SECONDS-START)) seconds"
 
