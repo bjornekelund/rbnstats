@@ -20,7 +20,7 @@ START=$SECONDS
 # Check if we already did the work for today, if so, exit
 test -e "$WEBFOLDER" || mkdir $WEBFOLDER
 [ -f $WEBFOLDER/done ] || echo "Never" > $WEBFOLDER/done
-if [ "$DATE" == "`cat $WEBFOLDER/done`" ]; then
+if [ "$NEWDATE" == "`cat $WEBFOLDER/done`" ]; then
     echo "Nothing to do."
     exit
 fi
@@ -56,7 +56,7 @@ fi
 
 ./ftptohost.sh $CREDFILE $WEBFOLDER/rbnstats.txt $WEBFOLDER/rbnstatsp.txt $WEBFOLDER/rbnact.txt $WEBFOLDER/statistics.csv
 
-echo $DATE > $WEBFOLDER/done
+echo $NEWDATE > $WEBFOLDER/done
 
 echo "Job ended "`date -u "+%F %T"`" UTC and took $((SECONDS-START)) seconds"
 
